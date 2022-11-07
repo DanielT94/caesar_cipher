@@ -5,14 +5,25 @@ require './lib/caesar_cipher.rb'
 describe CaesarCipher do
   subject { CaesarCipher.new }
 
-  #works with small positive shift
+  describe '#shift' do
+    it 'works with small positive shift' do
+      expect(subject.shift('Gg', 3)).to eql('Jj')
+    end
 
-  #works with small negative shift
+    it 'works with a small negative shift' do
+      expect(subject.shift('Jj', -3)).to eql('Gg')
+    end
 
-  #works with large positive shift
+    it 'works with large positive shift' do
+      expect(subject.shift('Gg', 45)).to eql('Zz')
+    end
 
-  #works with large negative shift
+    it 'works with large negative shift' do
+      expect(subject.shift('Zz', -20)).to eql('Ff')
+    end
 
-  #works with punctuation and spaces
-
+    it 'works with punctuation and spaces' do
+      expect(subject.shift('What a string!', 5)).to eql('Bmfy f xywnsl!')
+    end
+  end
 end
